@@ -32,8 +32,16 @@ function renderizarUsuarios(personas) {
 function renderizarMensajes(mensaje, esMio) {
     console.log('fecha: ', mensaje.fecha);
     var html = '';
+    var weekday = new Array(7);
+    weekday[0] = "Dom";
+    weekday[1] = "Lun";
+    weekday[2] = "Mar";
+    weekday[3] = "Mie";
+    weekday[4] = "Jue";
+    weekday[5] = "Vie";
+    weekday[6] = "Sab";
     var fecha = new Date(mensaje.fecha);
-    var hora = fecha.getHours() + ':' + (fecha.getMinutes() < 10 ? '0' : '') + fecha.getMinutes();
+    var hora = weekday[fecha.getDay()] + ' , ' + fecha.getHours() + ':' + (fecha.getMinutes() < 10 ? '0' : '') + fecha.getMinutes();
 
     var adminClass = 'info';
 
