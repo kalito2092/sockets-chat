@@ -6,14 +6,20 @@ $('#title_sala').text(params.get('sala'));
 function renderizarUsuarios(personas) {
     var html = '';
     html += `<li>
-             <a href="javascript:void(0)" class="active"> Chat de <span> ${params.get('sala')}</span></a>
+             <a href="javascript:void(0)" class="active"> Chat de <span> ${params.get('sala') + ' Group'}</span></a>
             </li>`;
 
-
+    var i = 1
     personas.forEach((persona) => {
         html += `<li>
-                  <a data-id="${persona.id}" href="javascript:void(0)"><img src="assets/images/users/1.jpg" alt="user-img" class="img-circle"> <span>${persona.nombre} <small class="text-success">online</small></span></a>
+                  <a data-id="${persona.id}" href="javascript:void(0)"><img src="assets/images/users/${i}.jpg" alt="user-img" class="img-circle"> <span>${persona.nombre} <small class="text-success">online</small></span></a>
                 </li>`;
+
+        i++
+
+        if (i > 8) {
+            i = 1
+        }
 
     })
 
@@ -24,9 +30,10 @@ function renderizarUsuarios(personas) {
 
 //cajas azules: mensajes de otros usuarios , cajas grises: mis mensajes
 function renderizarMensajes(mensaje, esMio) {
+    console.log('fecha: ', mensaje.fecha);
     var html = '';
     var fecha = new Date(mensaje.fecha);
-    var hora = fecha.getHours() + ':' + fecha.getMinutes();
+    var hora = fecha.getHours() + ':' + (fecha.getMinutes() < 10 ? '0' : '') + fecha.getMinutes();
 
     var adminClass = 'info';
 
